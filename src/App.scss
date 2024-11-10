@@ -589,6 +589,11 @@ template {
 #root {
     height: 100vh;
     overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 body {
@@ -608,6 +613,11 @@ body {
 @font-face {
     font-family: "SF-Pro-Display-Regular_light";
     src: url("./assets/Fonts/SF-Pro-Display-Light.otf");
+}
+
+@font-face {
+    font-family: "SF-Pro-Display-Heavy";
+    src: url("./assets/Fonts/SF-Pro-Display-Heavy.otf");
 }
 
 * {
