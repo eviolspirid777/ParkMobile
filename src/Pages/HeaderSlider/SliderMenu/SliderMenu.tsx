@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { CardType } from "../../../Types/CardType";
 import styles from "./SliderMenu.module.scss";
+import React from "react";
 
 type SliderMenuProps = {
   titles: string[];

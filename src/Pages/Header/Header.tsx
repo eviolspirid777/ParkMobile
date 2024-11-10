@@ -3,6 +3,7 @@ import img from "../../assets/Logo.png";
 import { ContentType } from "../../Types/SliderContentType.ts";
 import styles from "./Header.module.scss";
 import { FC } from "react";
+import React from "react";
 
 type HeaderProps = {
   mouseEnter: (type: ContentType) => void;

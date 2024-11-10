@@ -1,5 +1,6 @@
 import { FC, useEffect, useRef } from "react";
 import styles from "./SliderSearch.module.scss";
+import React from "react";
 
 type SliderSearchType = {
   searchWord?: string;

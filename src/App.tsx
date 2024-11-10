@@ -6,6 +6,7 @@ import { SwiperList } from "./Pages/Swiper/Swiper.tsx";
 import { UnderSwiperCards } from "./Pages/UnderSwiperCards/UnderSwiperCards.tsx";
 import { HeaderSlider } from "./Pages/HeaderSlider/HeaderSlider.tsx";
 import { ContentType } from "./Types/SliderContentType.ts";
+import React from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const reducer = (state: any, { type }: { type: ContentType }): ContentType => {

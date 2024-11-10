@@ -6,9 +6,9 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: 'dist', // Укажите папку для билда
+    outDir: 'dist', 
     rollupOptions: {
-      input: resolve(__dirname, 'index.html'), // Используем resolve из path
+      input: resolve(__dirname, 'index.html'), 
     }
   }
 })

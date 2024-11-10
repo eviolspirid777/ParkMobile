@@ -6,6 +6,7 @@ import img2 from "./MacBooks/2.png";
 import img3 from "./MacBooks/3.png";
 import { SliderMenu } from "./SliderMenu/SliderMenu";
 import { ContentType } from "../../Types/SliderContentType";
+import React from "react";
 import { SliderSearch } from "./SliderSearch/SliderSearch";
 
 type HeaderSliderProps = {
