@@ -4,15 +4,20 @@ import styles from "./HeaderSlider.module.scss";
 import img1 from "./MacBooks/1.png";
 import img2 from "./MacBooks/2.png";
 import img3 from "./MacBooks/3.png";
+import { SliderMenu } from "./SliderMenu/SliderMenu";
+import { ContentType } from "../../Types/SliderContentType";
+import { SliderSearch } from "./SliderSearch/SliderSearch";
 
 type HeaderSliderProps = {
   isContentVisible: boolean;
   handleMouseLeave: () => void;
+  contentType: ContentType;
 };
 
 export const HeaderSlider: FC<HeaderSliderProps> = ({
   handleMouseLeave,
   isContentVisible,
+  contentType,
 }) => {
   const titles = ["MacBook Air", "MacBook Pro", "iMac"];
   const subTitles = ["Apple Vision Pro", "AirPods", "Аксессуары"];
@@ -41,7 +46,6 @@ export const HeaderSlider: FC<HeaderSliderProps> = ({
     <>
       <div
         onMouseEnter={() => handleMouseLeave()}
-        onMouseLeave={() => handleMouseLeave()}
         className={
           styles[
             isContentVisible ? "blur-block-visible" : "blur-block-invisible"
@@ -49,6 +53,7 @@ export const HeaderSlider: FC<HeaderSliderProps> = ({
         }
       />
       <div
+        id="blur-block"
         className={
           styles[
             isContentVisible
@@ -57,62 +62,16 @@ export const HeaderSlider: FC<HeaderSliderProps> = ({
           ]
         }
       >
-        <div className={styles["blur-block-content-visible-titles"]}>
-          {titles.map((el, index) => (
-            <span key={index}>{el}</span>
-          ))}
-          {subTitles && (
-            <>
-              <hr style={{ backgroundColor: "#878375" }} />
-              <div className={styles["blur-block-content-visible-subtitles"]}>
-                {subTitles.map((el, index) => (
-                  <span key={index}>{el}</span>
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-        <div className={styles["blur-block-content-visible-items"]}>
-          {items.map((item, index) => (
-            <div
-              key={index}
-              className={styles["blur-block-content-visible-items-item-block"]}
-            >
-              <img
-                src={item.image}
-                className={
-                  styles["blur-block-content-visible-items-item-block-image"]
-                }
-              />
-              <div
-                className={
-                  styles[
-                    "blur-block-content-visible-items-item-block-text-block"
-                  ]
-                }
-              >
-                <span
-                  className={
-                    styles[
-                      "blur-block-content-visible-items-item-block-text-block-tag"
-                    ]
-                  }
-                >
-                  {item.tag}
-                </span>
-                <span
-                  className={
-                    styles[
-                      "blur-block-content-visible-items-item-block-text-block-price"
-                    ]
-                  }
-                >
-                  {item.price} ₽
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+        {contentType === "menu" ? (
+          <SliderMenu
+            isContentVisible={isContentVisible}
+            items={items}
+            subTitles={subTitles}
+            titles={titles}
+          />
+        ) : (
+          <SliderSearch />
+        )}
       </div>
     </>
   );
