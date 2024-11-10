@@ -3,14 +3,12 @@ import { CardType } from "../../../Types/CardType";
 import styles from "./SliderMenu.module.scss";
 
 type SliderMenuProps = {
-  isContentVisible: boolean;
   titles: string[];
   subTitles: string[];
   items: CardType[];
 };
 
 export const SliderMenu: FC<SliderMenuProps> = ({
-  isContentVisible,
   titles,
   subTitles,
   items,
@@ -36,9 +34,7 @@ export const SliderMenu: FC<SliderMenuProps> = ({
         {items.map((item, index) => (
           <div
             key={index}
-            className={`${
-              styles["blur-block-content-visible-items-item-block"]
-            } ${isContentVisible ? styles["visible"] : styles["invisible"]}`}
+            className={`${styles["blur-block-content-visible-items-item-block"]}`}
           >
             <img
               src={item.image}

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import styles from "./HeaderSlider.module.scss";
 
 import img1 from "./MacBooks/1.png";
@@ -10,6 +10,7 @@ import { SliderSearch } from "./SliderSearch/SliderSearch";
 
 type HeaderSliderProps = {
   isContentVisible: boolean;
+  handleIsContentVisible: () => void;
   handleMouseLeave: () => void;
   contentType: ContentType;
 };
@@ -17,6 +18,7 @@ type HeaderSliderProps = {
 export const HeaderSlider: FC<HeaderSliderProps> = ({
   handleMouseLeave,
   isContentVisible,
+  handleIsContentVisible,
   contentType,
 }) => {
   const titles = ["MacBook Air", "MacBook Pro", "iMac"];
@@ -42,33 +44,37 @@ export const HeaderSlider: FC<HeaderSliderProps> = ({
       price: "133 500",
     },
   ];
+
+  useEffect(() => {
+    const controller = new AbortController();
+    window.addEventListener(
+      "scroll",
+      () => {
+        handleIsContentVisible();
+      },
+      { signal: controller.signal }
+    );
+    return () => controller.abort();
+  }, []);
+
   return (
     <>
       <div
         onMouseEnter={() => handleMouseLeave()}
         className={
-          styles[
-            isContentVisible ? "blur-block-visible" : "blur-block-invisible"
-          ]
+          styles[`blur-block-${isContentVisible ? "visible" : "invisible"}`]
         }
       />
       <div
         id="blur-block"
         className={
           styles[
-            isContentVisible
-              ? "blur-block-content-visible"
-              : "blur-block-content-invisible"
+            `blur-block-content-${isContentVisible ? "visible" : "invisible"}`
           ]
         }
       >
         {contentType === "menu" ? (
-          <SliderMenu
-            isContentVisible={isContentVisible}
-            items={items}
-            subTitles={subTitles}
-            titles={titles}
-          />
+          <SliderMenu items={items} subTitles={subTitles} titles={titles} />
         ) : (
           <SliderSearch />
         )}

@@ -59,7 +59,15 @@ $tl: 0.6s; // transition length
     background-color: transparent;
     padding-right: 40px;
     color: #fff;
+    transition: color .15s;
+    &:focus {
+        &::placeholder {
+            transition: color .3s;
+            color: #aab984;
+        }
+    }
 }
+
 
 .input-search::placeholder {
     color: rgba(255, 255, 255, .5);

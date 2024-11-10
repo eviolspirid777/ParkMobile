@@ -22,8 +22,10 @@ export const App = () => {
   );
 
   const handleMouseEnter = (type: ContentType) => {
-    setIsHeaderMenuVisible(true);
-    setIsContentVisible(true);
+    setTimeout(() => {
+      setIsHeaderMenuVisible(true);
+      setIsContentVisible(true);
+    }, 100);
     dispatch({ type });
   };
 
@@ -42,6 +44,7 @@ export const App = () => {
           contentType={sliderData}
           handleMouseLeave={handleMouseLeave}
           isContentVisible={isContentVisible}
+          handleIsContentVisible={handleMouseLeave}
         />
       )}
       <SwiperList />

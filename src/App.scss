@@ -588,7 +588,6 @@ template {
 
 #root {
     height: 100vh;
-    overflow: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
     &::-webkit-scrollbar {
