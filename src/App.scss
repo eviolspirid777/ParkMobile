@@ -653,6 +653,9 @@ body {
     border: none;
     width: 40px;
     height: 40px;
+    &::after {
+        content: none !important;
+    }
 }
 
 .swiper-button-next {
