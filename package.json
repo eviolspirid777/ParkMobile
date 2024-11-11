@@ -6,9 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "buildGIT": "react-scripts build",
-    "predeployGIT": "npm run build",
-    "deployGIT": "gh-pages -d dist",
+    "firebase deploy": "firebase deploy --only hosting:parkmobiletest-95120",
     "lint": "eslint .",
     "preview": "vite preview"
   },
