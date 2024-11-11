@@ -6,26 +6,66 @@ import { FC } from "react";
 import React from "react";
 
 type HeaderProps = {
-  mouseEnter: (type: ContentType) => void;
+  mouseEnter: (
+    type: ContentType,
+    tiles: string[] | undefined,
+    subTitles: string[] | undefined
+  ) => void;
 };
 
 export const Header: FC<HeaderProps> = ({ mouseEnter }) => {
-  const navLinks = [
-    "Mac",
-    "Iphone",
-    "Ipad",
-    "Watch",
-    "Airpods",
-    "TV и Дом",
-    "Аксессуары",
-    "Доставка",
+  const linkedItems = [
+    {
+      navTitle: "Apple",
+      titles: [
+        "iPhone",
+        "MacBook",
+        "iPad",
+        "Apple Watch",
+        "AirPods",
+        "Apple TV",
+      ],
+      subTitles: ["Заявка на Трейд-Ин", "Заявка на ремонт"],
+    },
+    {
+      navTitle: "Samsung",
+      titles: ["Смартфоны", "Наушники", "Умные часы"],
+      subTitles: ["Заявка на Трейд-Ин", "Заявка на ремонт"],
+    },
+    {
+      navTitle: "Xiaomi",
+      titles: ["Смартфоны", "Наушники", "ТВ Приставки"],
+      subTitles: ["Заявка на Трейд-Ин", "Заявка на ремонт"],
+    },
+    {
+      navTitle: "Dyson",
+      titles: [
+        "Стайлеры",
+        "Фены",
+        "Выпрямители",
+        "Пылесосы",
+        "Очистители воздуха",
+      ],
+    },
+    {
+      navTitle: "Аккустика и гарнитура",
+      titles: ["Яндекс Станции", "JBL", "Marshall"],
+    },
+    {
+      navTitle: "Гейминг",
+      titles: ["Sony", "xBox", "Nintendo", "Steam Deck", "Аксессуары"],
+    },
   ];
 
   const [itemInBucket, setItemInBucket] = useState<number>(1);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
 
-  const handleMouseEnter = (type: ContentType) => {
-    mouseEnter(type);
+  const handleMouseEnter = (
+    type: ContentType,
+    titles: string[] | undefined,
+    subTitles: string[] | undefined
+  ) => {
+    mouseEnter(type, titles, subTitles);
   };
 
   useEffect(() => {
@@ -59,21 +99,23 @@ export const Header: FC<HeaderProps> = ({ mouseEnter }) => {
     >
       <img src={img} className={styles["logo"]} />
       <nav className={styles["nav-bar"]}>
-        {navLinks.map((el) => (
+        {linkedItems.map((el) => (
           <a
-            key={el}
+            key={el.navTitle}
             className={styles["nav-item"]}
-            onMouseEnter={() => handleMouseEnter("menu")}
+            onMouseEnter={() =>
+              handleMouseEnter("menu", el.titles, el.subTitles)
+            }
           >
-            {el}
+            {el.navTitle}
           </a>
         ))}
       </nav>
       <nav className={styles["nav-bucket-search"]}>
         <i
           className="fa-thin fa-magnifying-glass fa-lg"
-          onClick={() => handleMouseEnter("search")}
-          onMouseEnter={() => handleMouseEnter("search")}
+          onClick={() => handleMouseEnter("search", undefined, undefined)}
+          onMouseEnter={() => handleMouseEnter("search", undefined, undefined)}
         />
         <div className={styles["nav-bucket-search-shop-block"]}>
           <span>{itemInBucket}</span>

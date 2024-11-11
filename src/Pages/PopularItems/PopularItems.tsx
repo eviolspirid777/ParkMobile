@@ -23,7 +23,7 @@ export const PopularItems = () => {
       <h2 className={styles["header"]}>Популярные товары</h2>
       <div className={styles["popular-items-block"]}>
         {items.map((item, index) => (
-          <div className={styles["popular-items-block-item"]}>
+          <div key={index} className={styles["popular-items-block-item"]}>
             <div className={styles["popular-items-block-item-gurantee"]}>
               Гарантия
             </div>

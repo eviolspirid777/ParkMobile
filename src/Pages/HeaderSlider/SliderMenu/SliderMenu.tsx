@@ -4,9 +4,9 @@ import styles from "./SliderMenu.module.scss";
 import React from "react";
 
 type SliderMenuProps = {
-  titles: string[];
-  subTitles: string[];
-  items: CardType[];
+  titles?: string[];
+  subTitles?: string[];
+  items?: CardType[];
 };
 
 export const SliderMenu: FC<SliderMenuProps> = ({
@@ -17,9 +17,7 @@ export const SliderMenu: FC<SliderMenuProps> = ({
   return (
     <>
       <div className={styles["blur-block-content-visible-titles"]}>
-        {titles.map((el, index) => (
-          <span key={index}>{el}</span>
-        ))}
+        {titles && titles.map((el, index) => <span key={index}>{el}</span>)}
         {subTitles && (
           <>
             <hr style={{ backgroundColor: "#878375" }} />
@@ -32,43 +30,46 @@ export const SliderMenu: FC<SliderMenuProps> = ({
         )}
       </div>
       <div className={styles["blur-block-content-visible-items"]}>
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className={`${styles["blur-block-content-visible-items-item-block"]}`}
-          >
-            <img
-              src={item.image}
-              className={
-                styles["blur-block-content-visible-items-item-block-image"]
-              }
-            />
+        {items &&
+          items.map((item, index) => (
             <div
-              className={
-                styles["blur-block-content-visible-items-item-block-text-block"]
-              }
+              key={index}
+              className={`${styles["blur-block-content-visible-items-item-block"]}`}
             >
-              <span
+              <img
+                src={item.image}
+                className={
+                  styles["blur-block-content-visible-items-item-block-image"]
+                }
+              />
+              <div
                 className={
                   styles[
-                    "blur-block-content-visible-items-item-block-text-block-tag"
+                    "blur-block-content-visible-items-item-block-text-block"
                   ]
                 }
               >
-                {item.tag}
-              </span>
-              <span
-                className={
-                  styles[
-                    "blur-block-content-visible-items-item-block-text-block-price"
-                  ]
-                }
-              >
-                {item.price} ₽
-              </span>
+                <span
+                  className={
+                    styles[
+                      "blur-block-content-visible-items-item-block-text-block-tag"
+                    ]
+                  }
+                >
+                  {item.tag}
+                </span>
+                <span
+                  className={
+                    styles[
+                      "blur-block-content-visible-items-item-block-text-block-price"
+                    ]
+                  }
+                >
+                  {item.price} ₽
+                </span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </>
   );
