@@ -7,6 +7,9 @@ import { UnderSwiperCards } from "./Pages/UnderSwiperCards/UnderSwiperCards.tsx"
 import { HeaderSlider } from "./Pages/HeaderSlider/HeaderSlider.tsx";
 import { ContentType } from "./Types/SliderContentType.ts";
 import React from "react";
+import { Tiles } from "./Pages/Tiles/Tiles.tsx";
+import { UnderTilesLogos } from "./Pages/UnderTilesLogos/UnderTilesLogos.tsx";
+import { Catalog } from "./Pages/Catalog/Catalog.tsx";
 
 export type ReducerAction = {
   type?: ContentType;
@@ -60,6 +63,9 @@ export const App = () => {
       <SwiperList />
       <UnderSwiperCards />
       <PopularItems />
+      <Tiles />
+      <UnderTilesLogos />
+      <Catalog />
     </>
   );
 };
