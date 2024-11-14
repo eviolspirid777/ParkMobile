@@ -9,6 +9,7 @@ import { FilterTile } from "./Products/FilterTile/FilterTile";
 
 export const Catalog = () => {
   return (
+      //TODO: Сделать так, чтобы товары были на уровне с категориями
       <div className={styles["catalog-block"]}>
         <CatalogHeader />
         <Categories />
