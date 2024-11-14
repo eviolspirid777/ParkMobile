@@ -3,3 +3,5 @@ export type CardType = {
     tag: string,
     price: string
 }
+
+export type FullCardType = CardType & {gurantee: boolean};

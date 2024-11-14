@@ -1,7 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 import styles from "./Categories.module.scss";
+import { useAtom } from "jotai";
+import { filtersAtom } from "../../../Store/FiltersStore";
 
 export const Categories = () => {
   const categoriesItems = [
@@ -20,6 +22,16 @@ export const Categories = () => {
     "TV и Дом",
     "Популярное",
   ];
+
+  const [filters, setFilters] = useAtom(filtersAtom);
+  const [selectedValue, setSelectedValue] = useState(categoriesItems[0]);
+
+  useEffect(() => {
+    if(!filters) {
+      setSelectedValue(categoriesItems[0])
+    }
+  }, [filters])
+
 
   const spanRefs = useRef<HTMLSpanElement[]>([]);
 
@@ -62,10 +74,24 @@ export const Categories = () => {
     };
   }, []);
 
+  const handleCategory = (event: React.MouseEvent<HTMLSpanElement>) => {
+    const newFilter = event.currentTarget.textContent ?? ""
+    setSelectedValue(newFilter)
+    setFilters(newFilter)
+  }
+
   return (
     <div className={styles["categories-block"]}>
       {categoriesItems.map((el, index) => (
-        <span key={index} ref={(el) => (spanRefs.current[index] = el!)}>
+        <span
+          key={index}
+          ref={(el) => (spanRefs.current[index] = el!)}
+          style={el === selectedValue ? {
+            backgroundColor: "#abbcae",
+            color: "white"
+          } : {}}
+          onClick={handleCategory}
+        >
           {el}
         </span>
       ))}

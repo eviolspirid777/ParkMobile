@@ -1,5 +1,9 @@
-.catalog-block {
-    display: flex;
-    flex-flow: column nowrap;
-    padding-left: 22%;
+.catalog {
+    &-block {
+        position: relative;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+    }
 }
