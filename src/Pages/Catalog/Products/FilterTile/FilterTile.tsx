@@ -5,11 +5,14 @@ import { filtersAtom } from "../../../../Store/FiltersStore"
 
 
 export const FilterTile = () => {
-  const [filter, setFilter] = useAtom(filtersAtom)
+  const [filter, setFilter] = useAtom(filtersAtom);
   
   if(filter && filter !== "Все") {
-    return <div className={styles["tile"]} onClick={setFilter.bind(this, null)}>
-      {filter as string}
-    </div>
+    return <>
+        <div className={styles["tile"]} onClick={setFilter.bind(this, null)}>
+          {filter as string}
+        </div>
+        <span className={styles["total-items"]}>Найдено: INFINITY</span>
+    </>
   }
 }
