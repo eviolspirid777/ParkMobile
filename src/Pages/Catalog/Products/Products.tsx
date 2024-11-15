@@ -1,122 +1,29 @@
-import React from "react"
-import styles from "./Products.module.scss"
-import { ProductCard } from "./ProductCard/ProductCard"
+import React, { useEffect, useState } from "react";
+import styles from "./Products.module.scss";
+import { ProductCard } from "./ProductCard/ProductCard";
 
-import img1 from "./ProductsImages/Без имени.png"
-import { FullCardType } from "../../../Types/CardType"
-
+import { itemsAtom } from "../../../Store/ItemsStore";
+import { useAtom } from "jotai";
 
 export const Products = () => {
-  const products: FullCardType[] = [
-    {
-      image: img1,
-      tag: "Watch 6 Classic 47mm",
-      price: "21 290",
-      gurantee: false,
-    },
-    {
-      image: img1,
-      tag: "Watch 6 Classic 47mm",
-      price: "21 290",
-      gurantee: false,
-    },
-    {
-      image: img1,
-      tag: "Watch 6 Classic 47mm",
-      price: "21 290",
-      gurantee: false,
-    },
-    {
-      image: img1,
-      tag: "Watch 6 Classic 47mm",
-      price: "21 290",
-      gurantee: false,
-    },
-    {
-      image: img1,
-      tag: "Watch 6 Classic 47mm",
-      price: "21 290",
-      gurantee: false,
-    },
-    {
-      image: img1,
-      tag: "Watch 6 Classic 47mm",
-      price: "21 290",
-      gurantee: false,
-    },
-    {
-      image: img1,
-      tag: "Watch 6 Classic 47mm",
-      price: "21 290",
-      gurantee: false,
-    },
-    {
-      image: img1,
-      tag: "Watch 6 Classic 47mm",
-      price: "21 290",
-      gurantee: false,
-    },
-    {
-      image: img1,
-      tag: "Watch 6 Classic 47mm",
-      price: "21 290",
-      gurantee: false,
-    },
-    {
-      image: img1,
-      tag: "Watch 6 Classic 47mm",
-      price: "21 290",
-      gurantee: false,
-    },
-    {
-      image: img1,
-      tag: "Watch 6 Classic 47mm",
-      price: "21 290",
-      gurantee: false,
-    },
-    {
-      image: img1,
-      tag: "Watch 6 Classic 47mm",
-      price: "21 290",
-      gurantee: false,
-    },
-    {
-      image: img1,
-      tag: "Watch 6 Classic 47mm",
-      price: "21 290",
-      gurantee: false,
-    },
-    {
-      image: img1,
-      tag: "Watch 6 Classic 47mm",
-      price: "21 290",
-      gurantee: false,
-    },
-    {
-      image: img1,
-      tag: "Watch 6 Classic 47mm",
-      price: "21 290",
-      gurantee: false,
-    },
-    {
-      image: img1,
-      tag: "Watch 6 Classic 47mm",
-      price: "21 290",
-      gurantee: false,
-    },
-  ]
+  const [itemsFromStore, setItemsFromStore] = useAtom(itemsAtom);
+  // const [items, setItems] = useState(itemsFromStore);
+  // for (let i = 16; i < itemsFromStore.length; i + 16) {
+  //   const itemsPack = itemsFromStore.slice(0, 16);
+  //   setItems((previousItems) => [...previousItems, itemsPack]);
+  // }
 
+  // useEffect(() => {
+  //   console.log(items);
+  // }, [items]);
 
   return (
-    <div className={styles["product-cards-block"]}>
-      {
-        products.map((el, index) => (
-          <ProductCard
-            key={index}
-            item={el}
-          />
-        ))
-      }
+    <div>
+      <div className={styles["product-cards-block"]}>
+        {itemsFromStore.map((el, index) => (
+          <ProductCard key={index} item={el} />
+        ))}
+      </div>
     </div>
-  )
-}
+  );
+};

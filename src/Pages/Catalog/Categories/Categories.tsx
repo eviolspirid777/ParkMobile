@@ -27,11 +27,10 @@ export const Categories = () => {
   const [selectedValue, setSelectedValue] = useState(categoriesItems[0]);
 
   useEffect(() => {
-    if(!filters) {
-      setSelectedValue(categoriesItems[0])
+    if (!filters) {
+      setSelectedValue(categoriesItems[0]);
     }
-  }, [filters])
-
+  }, [filters]);
 
   const spanRefs = useRef<HTMLSpanElement[]>([]);
 
@@ -44,7 +43,6 @@ export const Categories = () => {
             const spanElement = spanRefs.current[index];
 
             if (spanElement) {
-
               gsap.fromTo(
                 spanElement,
                 {
@@ -73,10 +71,10 @@ export const Categories = () => {
   }, []);
 
   const handleCategory = (event: React.MouseEvent<HTMLSpanElement>) => {
-    const newFilter = event.currentTarget.textContent ?? ""
-    setSelectedValue(newFilter)
-    setFilters(newFilter)
-  }
+    const newFilter = event.currentTarget.textContent ?? "";
+    setSelectedValue(newFilter);
+    setFilters(newFilter);
+  };
 
   return (
     <div className={styles["categories-block"]}>
@@ -84,10 +82,14 @@ export const Categories = () => {
         <span
           key={index}
           ref={(el) => (spanRefs.current[index] = el!)}
-          style={el === selectedValue ? {
-            backgroundColor: "#abbcae",
-            color: "white"
-          } : {}}
+          style={
+            el === selectedValue
+              ? {
+                  backgroundColor: "#abbcae",
+                  color: "white",
+                }
+              : {}
+          }
           onClick={handleCategory}
         >
           {el}

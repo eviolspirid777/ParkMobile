@@ -1,7 +1,7 @@
 .tile {
   position: absolute;
   top: 210px;
-  left: 24vw;
+  left: 23vw;
   background-color: #e6e6e6;
   transition: background-color .1s ease-in;
   display: inline-block;
@@ -26,7 +26,8 @@
 .total-items {
   position: absolute;
   top: 260px;
-  left: 24vw;
+  left: 23vw;
   font-family: "SF-Pro-Display-Regular";
+  color: #8f8f8f;
   font-family: 100;
 }

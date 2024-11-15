@@ -1,8 +1,9 @@
 .product-cards-block {
-  padding-left: 6vw;
+  padding-left: 2vw;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 50px 80px;
+  grid-template-rows: repeat(4,1fr);
+  gap: 50px 100px;
   grid-auto-rows: minmax(150px, auto);
   @media (max-width: 768px) {
     grid-template-columns: repeat(3, 1fr);

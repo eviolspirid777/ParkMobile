@@ -48,12 +48,18 @@ export const Header: FC<HeaderProps> = ({ mouseEnter }) => {
       ],
     },
     {
-      navTitle: "Аккустика и гарнитура",
+      navTitle: "Акустика и гарнитура",
       titles: ["Яндекс Станции", "JBL", "Marshall"],
     },
     {
       navTitle: "Гейминг",
-      titles: ["Sony", "xBox", "Nintendo", "Steam Deck", "Аксессуары"],
+      titles: [
+        "Sony Playstation",
+        "Xbox",
+        "Nintendo",
+        "Steam Deck",
+        "Аксессуары",
+      ],
     },
   ];
 
