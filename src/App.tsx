@@ -10,6 +10,7 @@ import React from "react";
 import { Tiles } from "./Pages/Tiles/Tiles.tsx";
 import { UnderTilesLogos } from "./Pages/UnderTilesLogos/UnderTilesLogos.tsx";
 import { Catalog } from "./Pages/Catalog/Catalog.tsx";
+import { InputFileComponent } from "./Pages/InputFileComponent/InputFileComponent.tsx";
 
 export type ReducerAction = {
   type?: ContentType;
@@ -66,6 +67,7 @@ export const App = () => {
       <Tiles />
       <UnderTilesLogos />
       <Catalog />
+      <InputFileComponent />
     </>
   );
 };

@@ -44,7 +44,6 @@ export const Categories = () => {
             const spanElement = spanRefs.current[index];
 
             if (spanElement) {
-              const delay = index * 0.05;
 
               gsap.fromTo(
                 spanElement,
@@ -57,7 +56,6 @@ export const Categories = () => {
                   y: 0,
                   duration: 0.5,
                   ease: "power2.out",
-                  delay: delay,
                 }
               );
             }
