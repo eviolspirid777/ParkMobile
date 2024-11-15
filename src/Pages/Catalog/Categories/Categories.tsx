@@ -3,7 +3,7 @@ import gsap from "gsap";
 
 import styles from "./Categories.module.scss";
 import { useAtom } from "jotai";
-import { filtersAtom } from "../../../Store/FiltersStore";
+import { categoryAtom } from "../../../Store/FiltersStore";
 
 export const Categories = () => {
   const categoriesItems = [
@@ -23,14 +23,14 @@ export const Categories = () => {
     "Популярное",
   ];
 
-  const [filters, setFilters] = useAtom(filtersAtom);
+  const [categories, setCategories] = useAtom(categoryAtom);
   const [selectedValue, setSelectedValue] = useState(categoriesItems[0]);
 
   useEffect(() => {
-    if (!filters) {
+    if (!categories) {
       setSelectedValue(categoriesItems[0]);
     }
-  }, [filters]);
+  }, [categories]);
 
   const spanRefs = useRef<HTMLSpanElement[]>([]);
 
@@ -73,7 +73,7 @@ export const Categories = () => {
   const handleCategory = (event: React.MouseEvent<HTMLSpanElement>) => {
     const newFilter = event.currentTarget.textContent ?? "";
     setSelectedValue(newFilter);
-    setFilters(newFilter);
+    setCategories(newFilter);
   };
 
   return (

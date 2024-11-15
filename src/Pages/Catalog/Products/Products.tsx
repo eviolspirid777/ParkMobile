@@ -1,28 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { FC } from "react";
 import styles from "./Products.module.scss";
 import { ProductCard } from "./ProductCard/ProductCard";
 
-import { itemsAtom } from "../../../Store/ItemsStore";
-import { useAtom } from "jotai";
+import { CardType } from "../../../Types/CardType";
 
-export const Products = () => {
-  const [itemsFromStore, setItemsFromStore] = useAtom(itemsAtom);
-  // const [items, setItems] = useState(itemsFromStore);
-  // for (let i = 16; i < itemsFromStore.length; i + 16) {
-  //   const itemsPack = itemsFromStore.slice(0, 16);
-  //   setItems((previousItems) => [...previousItems, itemsPack]);
-  // }
+type ProductsType = {
+  cards?: CardType[];
+};
 
-  // useEffect(() => {
-  //   console.log(items);
-  // }, [items]);
-
+export const Products: FC<ProductsType> = ({ cards }) => {
   return (
     <div>
       <div className={styles["product-cards-block"]}>
-        {itemsFromStore.map((el, index) => (
-          <ProductCard key={index} item={el} />
-        ))}
+        {cards &&
+          cards.map((el, index) => <ProductCard key={index} card={el} />)}
       </div>
     </div>
   );

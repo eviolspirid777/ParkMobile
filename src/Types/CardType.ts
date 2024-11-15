@@ -1,7 +1,17 @@
+import { ItemBrandsEnum } from "./ItemBrands";
+import { ItemCategoriesEnum } from "./ItemCategories";
+
 export type CardType = {
     image: string,
-    tag: string,
-    price: string
+    name: string,
+    price: string,
+    description: string,
+    category: ItemCategoriesEnum,
+    itemBrand: ItemBrandsEnum,
+    stock: number,
 }
 
-export type FullCardType = CardType & {gurantee: boolean};
+export type RecivedCardDataType = {
+    items: CardType[],
+    count: number
+}

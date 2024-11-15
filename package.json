@@ -11,6 +11,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.60.5",
+    "axios": "^1.7.7",
     "firebase": "^11.0.1",
     "gsap": "^3.12.5",
     "jotai": "^2.10.2",
