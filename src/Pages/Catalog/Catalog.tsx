@@ -71,7 +71,7 @@ export const Catalog = () => {
   }, [storeCategory, fetchFilteredItems]);
 
   if (isLoadingAll || isPendingCategory) {
-    return <div className="">Loading...</div>;
+    return <div style={{ height: "2040px", width: "1239px" }}>Loading...</div>;
   }
 
   return (

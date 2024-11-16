@@ -1,16 +1,17 @@
 import { useReducer, useState } from "react";
-import "./App.scss";
-import { Header } from "./Pages/Header/Header.tsx";
-import { PopularItems } from "./Pages/PopularItems/PopularItems.tsx";
-import { SwiperList } from "./Pages/Swiper/Swiper.tsx";
-import { UnderSwiperCards } from "./Pages/UnderSwiperCards/UnderSwiperCards.tsx";
-import { HeaderSlider } from "./Pages/HeaderSlider/HeaderSlider.tsx";
-import { ContentType } from "./Types/SliderContentType.ts";
 import React from "react";
-import { Tiles } from "./Pages/Tiles/Tiles.tsx";
-import { UnderTilesLogos } from "./Pages/UnderTilesLogos/UnderTilesLogos.tsx";
-import { Catalog } from "./Pages/Catalog/Catalog.tsx";
-import { InputFileComponent } from "./Pages/InputFileComponent/InputFileComponent.tsx";
+import "./App.scss";
+import { ContentType } from "./Types/SliderContentType";
+import { Header } from "./Pages/Header/Header";
+import { HeaderSlider } from "./Pages/HeaderSlider/HeaderSlider";
+import { SwiperList } from "./Pages/Swiper/Swiper";
+import { UnderSwiperCards } from "./Pages/UnderSwiperCards/UnderSwiperCards";
+import { PopularItems } from "./Pages/PopularItems/PopularItems";
+import { Tiles } from "./Pages/Tiles/Tiles";
+import { Catalog } from "./Pages/Catalog/Catalog";
+import { UnderTilesLogos } from "./Pages/UnderTilesLogos/UnderTilesLogos";
+import { InputFileComponent } from "./Pages/InputFileComponent/InputFileComponent";
+import { Outlet, useNavigate } from "react-router-dom";
 
 export type ReducerAction = {
   type?: ContentType;
@@ -27,6 +28,9 @@ const reducer = (
 };
 
 export const App = () => {
+  const navigate = useNavigate();
+  const [selectedRoute, setSelectedRoute] = useState<unknown>(null);
+
   const [isHeaderMenuVisible, setIsHeaderMenuVisible] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(false);
   const [sliderData, dispatch] = useReducer(reducer, {});
@@ -50,9 +54,24 @@ export const App = () => {
     }, 800);
   };
 
+  const handleRouteCategory = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    const category = event.currentTarget.text;
+    setSelectedRoute(category);
+    navigate(`/category/${category}`, { state: category });
+  };
+
+  if (selectedRoute) {
+    return <Outlet />;
+  }
+
   return (
     <>
-      <Header mouseEnter={handleMouseEnter} />
+      <Header
+        mouseEnter={handleMouseEnter}
+        handleMouseClick={(event) => handleRouteCategory(event)}
+      />
       {isHeaderMenuVisible && (
         <HeaderSlider
           contentType={sliderData}
