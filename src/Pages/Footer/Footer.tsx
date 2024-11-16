@@ -29,7 +29,7 @@ export const Footer = () => {
         </div>
         <div className={styles["footer-block-help-items"]}>
           <h2>Подпишись</h2>
-          <span>Instagram*</span>
+          <span title="Запрещенная в РФ организация META">Instagram*</span>
           <span>VK</span>
           <span>Telegram</span>
         </div>
