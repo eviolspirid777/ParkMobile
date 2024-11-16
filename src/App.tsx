@@ -12,6 +12,7 @@ import { Catalog } from "./Pages/Catalog/Catalog";
 import { UnderTilesLogos } from "./Pages/UnderTilesLogos/UnderTilesLogos";
 import { InputFileComponent } from "./Pages/InputFileComponent/InputFileComponent";
 import { Outlet, useNavigate } from "react-router-dom";
+import { Footer } from "./Pages/Footer/Footer";
 
 export type ReducerAction = {
   type?: ContentType;
@@ -87,6 +88,7 @@ export const App = () => {
       <UnderTilesLogos />
       <Catalog />
       <InputFileComponent />
+      <Footer />
     </>
   );
 };
