@@ -601,6 +601,17 @@ body {
 
     * {
         scrollbar-width: thin;
+        &::selection {
+            background-color: #abbcae;
+            /* Измените цвет фона выделения */
+            color: white;
+            /* Измените цвет текста выделения */
+        }
+    
+        &::-moz-selection {
+            background-color: #abbcae;
+            color: white;
+        }
     }
 }
 

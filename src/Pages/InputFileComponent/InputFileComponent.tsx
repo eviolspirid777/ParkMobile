@@ -15,7 +15,9 @@ export const InputFileComponent = () => {
       reader.onload = (e) => {
         if (e.target && e.target.result instanceof ArrayBuffer) {
           const arrayBuffer = e.target.result as ArrayBuffer;
-          setImageBlob(new Blob([new Uint8Array(arrayBuffer)], { type: file.type }));
+          setImageBlob(
+            new Blob([new Uint8Array(arrayBuffer)], { type: file.type })
+          );
         } else {
           console.error("Ошибка чтения файла:", e.target!.error);
         }
@@ -31,48 +33,48 @@ export const InputFileComponent = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-  
+
     if (!imageBlob) {
       console.log("Изображение не выбрано");
       return;
     }
-  
+
     const formData = new FormData();
     formData.append("image", imageBlob, "image.jpg");
-    formData.append("tag", "Hello");
-    formData.append("price", "MegAHELLO");
-  
-    const response = await fetch('/api/ItemsPostgre/upload', {
+    formData.append("name", "Игровая приставка Sony PlayStation 5 Slim");
+
+    const response = await fetch("/api/ItemsPostgre/updatePhoto", {
       method: "POST",
-      body: formData
+      body: formData,
     });
   };
 
   const triggerData = () => {
     fetch("/api/ItemsPostgre/3/image")
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         return response.arrayBuffer();
       })
-      .then(arrayBuffer => {
-        const blob = new Blob([arrayBuffer], { type: 'image/jpeg' });
+      .then((arrayBuffer) => {
+        const blob = new Blob([arrayBuffer], { type: "image/jpeg" });
         const url = URL.createObjectURL(blob);
         setItemsData(url);
       })
-      .catch(error => console.error("Ошибка:", error));
+      .catch((error) => console.error("Ошибка:", error));
   };
-  
 
   useEffect(() => {
-    console.log(itemsData)
-  }, [itemsData])
+    console.log(itemsData);
+  }, [itemsData]);
 
   return (
     <form onSubmit={handleSubmit}>
       {itemsData && <img src={itemsData} alt="Product Image" />}
-      <button type="button" onClick={triggerData}>HELLO</button>
+      <button type="button" onClick={triggerData}>
+        HELLO
+      </button>
       <input type="file" onChange={handleImageChange} />
       <button type="submit">Загрузить</button>
     </form>
