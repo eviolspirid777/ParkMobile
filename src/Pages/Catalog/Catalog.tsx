@@ -47,9 +47,7 @@ export const Catalog = () => {
       const response = await axios.post<RecivedCardDataType>(
         `api/ItemsPostgre/category?category=${categoryDictionary.get(category)}`
       );
-      const data = response.data;
-      setStoreItems(data);
-      return data;
+      return response.data;
     },
   });
 
@@ -70,21 +68,21 @@ export const Catalog = () => {
     }
   }, [storeCategory, fetchFilteredItems]);
 
-  if (isLoadingAll || isPendingCategory) {
-    return <div style={{ height: "2040px", width: "1239px" }}>Loading...</div>;
-  }
-
   return (
     <div className={styles["catalog-block"]}>
       <CatalogHeader />
       <Categories />
       <FilterTile itemsCount={categoryItems?.count || items?.count} />
-      <Products
-        cards={categoryItems?.items || items?.items}
-        itemsCount={categoryItems?.count || items?.count}
-        currentPage={currentPage}
-        onPageChange={handleOnPageChange}
-      />
+      {isLoadingAll || isPendingCategory ? (
+        <div style={{ height: "2040px", width: "1239px" }}>Loading...</div>
+      ) : (
+        <Products
+          cards={categoryItems?.items || items?.items}
+          itemsCount={categoryItems?.count || items?.count}
+          currentPage={currentPage}
+          onPageChange={handleOnPageChange}
+        />
+      )}
     </div>
   );
 };
