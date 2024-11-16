@@ -4,7 +4,7 @@ import React, { FC } from "react";
 import { categoryAtom } from "../../../../Store/FiltersStore";
 
 type FilterTileType = {
-  itemsCount: number;
+  itemsCount: number | undefined;
 };
 
 export const FilterTile: FC<FilterTileType> = ({ itemsCount }) => {
@@ -16,7 +16,9 @@ export const FilterTile: FC<FilterTileType> = ({ itemsCount }) => {
         <div className={styles["tile"]} onClick={setFilter.bind(this, "Все")}>
           {filter as string}
         </div>
-        <span className={styles["total-items"]}>Найдено: {itemsCount}</span>
+        {itemsCount && (
+          <span className={styles["total-items"]}>Найдено: {itemsCount}</span>
+        )}
       </>
     );
   }
