@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 export const InputFileComponent = () => {
   const [selectedImage, setSelectedImage] = useState<File>();
   const [imageBlob, setImageBlob] = useState<Blob>();
-  const [itemsData, setItemsData] = useState();
+  const [itemsData, setItemsData] = useState<string>();
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target && event.target.files) {
@@ -43,7 +43,7 @@ export const InputFileComponent = () => {
     formData.append("image", imageBlob, "image.jpg");
     formData.append("name", "Игровая приставка Sony PlayStation 5 Slim");
 
-    const response = await fetch("/api/ItemsPostgre/updatePhoto", {
+    await fetch("/api/ItemsPostgre/updatePhoto", {
       method: "POST",
       body: formData,
     });
@@ -60,7 +60,7 @@ export const InputFileComponent = () => {
       .then((arrayBuffer) => {
         const blob = new Blob([arrayBuffer], { type: "image/jpeg" });
         const url = URL.createObjectURL(blob);
-        setItemsData(url);
+        setItemsData(url as string);
       })
       .catch((error) => console.error("Ошибка:", error));
   };

@@ -2,13 +2,10 @@ import { FC, useEffect } from "react";
 import styles from "./HeaderSlider.module.scss";
 
 import { ReducerAction } from "../../App";
-
-import img1 from "./MacBooks/1.png";
-import img2 from "./MacBooks/2.png";
-import img3 from "./MacBooks/3.png";
 import { SliderMenu } from "./SliderMenu/SliderMenu";
 import React from "react";
 import { SliderSearch } from "./SliderSearch/SliderSearch";
+import { CardType } from "../../Types/CardType";
 
 type HeaderSliderProps = {
   isContentVisible: boolean;
@@ -53,7 +50,7 @@ export const HeaderSlider: FC<HeaderSliderProps> = ({
       >
         {contentType.type === "menu" ? (
           <SliderMenu
-            items={contentType.items}
+            items={contentType.items as unknown as CardType[]}
             subTitles={contentType.subTitles}
             titles={contentType.titles}
           />

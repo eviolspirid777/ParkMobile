@@ -56,7 +56,7 @@ export const SliderMenu: FC<SliderMenuProps> = ({
                     ]
                   }
                 >
-                  {item.tag}
+                  {item.name}
                 </span>
                 <span
                   className={

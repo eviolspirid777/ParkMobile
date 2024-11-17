@@ -9,9 +9,9 @@ type ProductsType = {
   currentPage: number;
   onPageChange: (skip: number, page: number) => void;
 };
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const reducer = (
-  state,
+  state: unknown,
   {
     skip,
     take,
