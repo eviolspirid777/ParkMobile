@@ -14,9 +14,14 @@ type HeaderProps = {
   handleMouseClick: (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => void;
+  handleMainMenuRoute: () => void;
 };
 
-export const Header: FC<HeaderProps> = ({ mouseEnter, handleMouseClick }) => {
+export const Header: FC<HeaderProps> = ({
+  mouseEnter,
+  handleMouseClick,
+  handleMainMenuRoute,
+}) => {
   const linkedItems = [
     {
       navTitle: "Apple",
@@ -106,7 +111,7 @@ export const Header: FC<HeaderProps> = ({ mouseEnter, handleMouseClick }) => {
         isHeaderHidden ? styles["header-hidden"] : ""
       }`}
     >
-      <img src={img} className={styles["logo"]} />
+      <img src={img} className={styles["logo"]} onClick={handleMainMenuRoute} />
       <nav className={styles["nav-bar"]}>
         {linkedItems.map((el) => (
           <a

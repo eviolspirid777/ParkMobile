@@ -1,6 +1,5 @@
 .footer-block {
     height: 355px;
-    margin-top: 115px;
     background-color: #121212;
     color: white;
     display: flex;
@@ -29,12 +28,23 @@
             & h2 {
                 font-size: 0.9rem;
             }
-            & span {
+            & span, a {
                 font-size: 0.8rem;
                 color: #909090;
                 cursor: pointer;
+                text-decoration: none;
                 &:hover {
                     color: #a4a4a4;
+                }
+            }
+            &-first-block {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                &-number-address {
+                    display: flex;
+                    flex-flow: column wrap;
+                    gap: 10px;
+                    width: 200px;
                 }
             }
         }
@@ -54,4 +64,14 @@
             color: #a4a4a4;
         }
     }
+}
+
+.subscribe-text {
+    pointer-events: none;
+}
+
+.reqesits {
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
 }

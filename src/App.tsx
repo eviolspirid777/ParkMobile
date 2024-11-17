@@ -1,18 +1,13 @@
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import React from "react";
 import "./App.scss";
 import { ContentType } from "./Types/SliderContentType";
 import { Header } from "./Pages/Header/Header";
 import { HeaderSlider } from "./Pages/HeaderSlider/HeaderSlider";
-import { SwiperList } from "./Pages/Swiper/Swiper";
-import { UnderSwiperCards } from "./Pages/UnderSwiperCards/UnderSwiperCards";
-import { PopularItems } from "./Pages/PopularItems/PopularItems";
-import { Tiles } from "./Pages/Tiles/Tiles";
-import { Catalog } from "./Pages/Catalog/Catalog";
-import { UnderTilesLogos } from "./Pages/UnderTilesLogos/UnderTilesLogos";
-import { InputFileComponent } from "./Pages/InputFileComponent/InputFileComponent";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Footer } from "./Pages/Footer/Footer";
+import { useAtom } from "jotai";
+import { selectedRouteAtom } from "./Store/RouteStore";
 
 export type ReducerAction = {
   type?: ContentType;
@@ -30,7 +25,7 @@ const reducer = (
 
 export const App = () => {
   const navigate = useNavigate();
-  const [selectedRoute, setSelectedRoute] = useState<unknown>(null);
+  const [selectedRoute, setSelectedRoute] = useAtom(selectedRouteAtom);
 
   const [isHeaderMenuVisible, setIsHeaderMenuVisible] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(false);
@@ -63,15 +58,22 @@ export const App = () => {
     navigate(`/category/${category}`, { state: category });
   };
 
-  if (selectedRoute) {
-    return <Outlet />;
-  }
+  const handleMainMenu = () => {
+    navigate("/");
+  };
+
+  useEffect(() => {
+    if (selectedRoute) {
+      navigate(selectedRoute);
+    }
+  }, [selectedRoute]);
 
   return (
     <>
       <Header
         mouseEnter={handleMouseEnter}
         handleMouseClick={(event) => handleRouteCategory(event)}
+        handleMainMenuRoute={handleMainMenu}
       />
       {isHeaderMenuVisible && (
         <HeaderSlider
@@ -81,13 +83,7 @@ export const App = () => {
           handleIsContentVisible={handleMouseLeave}
         />
       )}
-      <SwiperList />
-      <UnderSwiperCards />
-      <PopularItems />
-      <Tiles />
-      <UnderTilesLogos />
-      <Catalog />
-      <InputFileComponent />
+      <Outlet />
       <Footer />
     </>
   );
