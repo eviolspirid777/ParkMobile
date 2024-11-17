@@ -66,7 +66,7 @@ export const TradeInComponent = () => {
           </div>
         ))}
       </div>
-      <div className={styles["faq-block"]} style={{ width: "80%" }}>
+      <div className={styles["faq-block"]}>
         <h3>Часто задаваемые вопросы</h3>
         <AccordionComponent data={accordionData} />
       </div>
